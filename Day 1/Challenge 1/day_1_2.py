@@ -48,23 +48,21 @@ def calculate_total_calories(calories_dict) -> dict:
     return {dwarf: sum(food_items) for dwarf, food_items in calories_dict.items()}
 
 
-def get_most_calories(total_calories_dict) -> int:
+def get_top_3_most_calories(total_calories_dict) -> list:
     """
-    Reorder the dictionary such as the first entry to be the dwarf with the most calories, then return the amount of
-    calories as an integer.
+    Reorder the dictionary such as the first entry to be the dwarf with the most calories, then return the calories of the
+    top 3 dwarfs as a list.
     :param total_calories_dict: Dictionary with dwarfs and their total amount of calories
-    :return: Returns a single integer, the most calories carried by a dwarf.
+    :return: Returns a list of calories, each carried by the dwarf in the top 3.
     """
     ordered_calories = sorted(total_calories_dict.items(), key=lambda x: x[1], reverse=True)
-    most_calories = ordered_calories[0][1]
-    return most_calories
+    top_3_most_calories = [ordered_calories[dwarf_position][1] for dwarf_position in range(0, 3)]
+    return top_3_most_calories
 
 
 with open(r"./calories_data", "r") as file:
     calories_dict = get_calories_dict(file_object=file)
     total_calories_dict = calculate_total_calories(calories_dict=calories_dict)
-    most_calories = get_most_calories(total_calories_dict=total_calories_dict)
-    print(most_calories)
-
-
-
+    top_3_most_calories = get_top_3_most_calories(total_calories_dict=total_calories_dict)
+    sum_of_top_3_calories = sum(top_3_most_calories)
+    print(sum_of_top_3_calories)
