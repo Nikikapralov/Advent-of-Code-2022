@@ -30,7 +30,7 @@ def get_calories_dict(file_object) -> dict:
     return calories_dict
 
 
-def is_food_item(entry) -> bool:
+def is_food_item(entry: str) -> bool:
     """
     Check if the current entry is a food item or a delimiter.
     :param entry: The current entry, foot item or delimiter.
@@ -39,7 +39,7 @@ def is_food_item(entry) -> bool:
     return entry[0].isnumeric()
 
 
-def calculate_total_calories(calories_dict) -> dict:
+def calculate_total_calories(calories_dict: dict) -> dict:
     """
     Get total calories from all food items per dwarf.
     :param calories_dict: Dictionary with dwarfs and their food items.
@@ -48,7 +48,7 @@ def calculate_total_calories(calories_dict) -> dict:
     return {dwarf: sum(food_items) for dwarf, food_items in calories_dict.items()}
 
 
-def get_most_calories(total_calories_dict) -> int:
+def get_most_calories(total_calories_dict: dict) -> int:
     """
     Reorder the dictionary such as the first entry to be the dwarf with the most calories, then return the amount of
     calories as an integer.
